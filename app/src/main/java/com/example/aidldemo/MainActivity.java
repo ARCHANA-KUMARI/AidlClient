@@ -38,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
                 if(mCalcSericeConn == null) {
                     mCalcSericeConn = new CalcServiceConn();
                 }
-                Intent intent = new Intent("com.example.aidldemo.services.CalculatorService");
+                Intent intent = new Intent("com.example.aidldemo.services.CalculatorService.action");
                 intent.setPackage("com.example.aidlserver");
-                bindService(intent, mCalcSericeConn, Service.BIND_AUTO_CREATE);
+                getApplicationContext().bindService(intent, mCalcSericeConn, Service.BIND_AUTO_CREATE);
             }
         });
 
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceDisconnected(ComponentName name) {
             Log.i(TAG, "onServiceDisconnected: name" + name);
-          //  mICommunicator = null;
+            mICommunicator = null;
         }
 
         @Override
